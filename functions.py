@@ -1,5 +1,6 @@
-'''
+
 import csv
+'''
 from datetime import datetime
 '''
 # ADD EXPENSES BY TYPE
@@ -38,6 +39,12 @@ def expense():
     amonut = input('Please Enter the amount of this expense: ')
     category = expense_type()
     print(f'Expense to Add: {name}, £{amonut}, {category}')
-    
     expense()
-    
+
+def income():
+    name = input('please enter the name of this income')
+    amonut = input('Please Enter the amount of this income: ')
+    category = income_type()
+    print(f'Expense to Add: {name}, £{amonut}, {category}')
+    income()
+
