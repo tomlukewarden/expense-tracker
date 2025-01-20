@@ -4,6 +4,8 @@ import csv
 
 from datetime import datetime
 '''
+
+import tkinter as tk
 # ADD EXPENSES BY TYPE
 # EDIT EXPENSE TYPES
 # VIEW TOTAL EXPENSES AND EXPENSES BY CATAGORY
@@ -62,24 +64,31 @@ def view_income():
     print("Income: ")
     # Read income from a file or database and print them here
 
-def menu():
-    while True:
-        print("1. Add Expense")
-        print("2. Add Income")
-        print("3. View Expenses")
-        print("4. View Income")
-        print("5. Exit")
+def gui_menu():
+    root = tk.Tk()
+    root.title("Expense and Income Manager")
+    root.geometry("300x300") 
 
-        choice = input("Please select an option: ")
-        if choice == '1':
-            expense()
-        elif choice == '2':
-            income()
-        elif choice == '3':
-            view_expenses()
-        elif choice == '4':
-            view_income()
-        elif choice == '5':
-            break
-        else:
-            print("Invalid choice. Please try again.")
+    # Add a label
+    title_label = tk.Label(root, text="Expense and Income Manager", font=("Helvetica", 14))
+    title_label.pack(pady=20)
+
+    # Add buttons 
+    btn_add_expense = tk.Button(root, text="Add Expense", width=20, command=expense)
+    btn_add_expense.pack(pady=10)
+
+    btn_add_income = tk.Button(root, text="Add Income", width=20, command=income)
+    btn_add_income.pack(pady=10)
+
+    btn_view_expenses = tk.Button(root, text="View Expenses", width=20, command=view_expenses)
+    btn_view_expenses.pack(pady=10)
+
+    btn_view_income = tk.Button(root, text="View Income", width=20, command=view_income)
+    btn_view_income.pack(pady=10)
+
+    btn_exit = tk.Button(root, text="Exit", width=20, command=root.destroy)
+    btn_exit.pack(pady=10)
+
+    root.mainloop()
+
+gui_menu()
