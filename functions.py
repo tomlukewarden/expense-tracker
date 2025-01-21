@@ -14,7 +14,6 @@ def save_expense_to_csv(title, amount, category):
     except Exception as e:
         print(f"Error writing to file: {e}")
 
-
 def save_income_to_csv(title, amount, category):
     filename = "income.csv"
     try:
@@ -25,8 +24,7 @@ def save_income_to_csv(title, amount, category):
             writer.writerow([title, amount, category, datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
     except Exception as e:
         print(f"Error writing to file: {e}")
-
-
+        
 def expense_form():
     expense_window = tk.Toplevel(root)
     expense_window.title("Expense Manager")
@@ -74,7 +72,6 @@ def expense_form():
 
     error_label = tk.Label(expense_window, text="", font=("Helvetica", 10))
     error_label.grid(row=5, column=0, columnspan=2)
-
 
 def income_form():
     income_window = tk.Toplevel(root)
@@ -125,13 +122,16 @@ def income_form():
     error_label = tk.Label(income_window, text="", fg="red")
     error_label.grid(row=7, column=0, columnspan=2)
 
-
-
+def total_left():
+    print('total')
+    
 root = tk.Tk()
 root.title("Expense and Income Manager")
-root.geometry("300x200")
+root.config(bg="grey")
+root.geometry("600x400")
 tk.Label(root, text="Choose an option:", font=("Helvetica", 14)).pack(pady=20)
 tk.Button(root, text="Add New Expenses", width=25, command=expense_form).pack(pady=10)
 tk.Button(root, text="Add New Income", width=25, command=income_form).pack(pady=10)
+tk.Button(root, text="View Remaining Money", width=25, command=total_left).pack(pady=10)
 
 root.mainloop()
