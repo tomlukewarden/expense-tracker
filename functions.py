@@ -8,20 +8,20 @@ def save_expense_to_csv(title, amount, category):
     try:
         with open(filename, mode='a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
-            if file.tell() == 0:  # Add headers if the file is empty
-                writer.writerow(["Title", "Amount (£)", "Category", "Date"])
-            writer.writerow([title, amount, category, datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
+            if file.tell() == 0:  
+                writer.writerow(["Title", "Amount (£)", "Category", "Date", "Type"])
+            writer.writerow([title, amount, category, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "Expense"])
     except Exception as e:
         print(f"Error writing to file: {e}")
 
 def save_income_to_csv(title, amount, category):
-    filename = "income.csv"
+    filename = "expenses.csv"
     try:
         with open(filename, mode='a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             if file.tell() == 0:  # Add headers if the file is empty
-                writer.writerow(["Title", "Amount (£)", "Category", "Date"])
-            writer.writerow([title, amount, category, datetime.now().strftime('%Y-%m-%d %H:%M:%S')])
+                writer.writerow(["Title", "Amount (£)", "Category", "Date", "Type"])
+            writer.writerow([title, amount, category, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "Income"])
     except Exception as e:
         print(f"Error writing to file: {e}")
         
@@ -123,7 +123,15 @@ def income_form():
     error_label.grid(row=7, column=0, columnspan=2)
 
 def total_left():
-    print('total')
+    with open("expenses.csv", "r", newline="", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        next(reader)
+        total = 0
+        for row in reader:
+            amount = float(row[1])
+            total += amount
+    label = tk.Label(root, text=f"Total Left: £{total:.2f}", font=("Helvetica", 14))
+    label.pack(pady=20)
     
 root = tk.Tk()
 root.title("Expense and Income Manager")
@@ -133,5 +141,7 @@ tk.Label(root, text="Choose an option:", font=("Helvetica", 14)).pack(pady=20)
 tk.Button(root, text="Add New Expenses", width=25, command=expense_form).pack(pady=10)
 tk.Button(root, text="Add New Income", width=25, command=income_form).pack(pady=10)
 tk.Button(root, text="View Remaining Money", width=25, command=total_left).pack(pady=10)
+
+
 
 root.mainloop()
