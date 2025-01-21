@@ -26,49 +26,50 @@ def income_type():
             print("Invalid category. Please try again.")
 
 def expense():
-    while True:
-        root = tk.Tk()
-        root.geometry('400x300')
-        root.title("Expense Manager")
-        
-        label = tk.Label(root, text="Enter the details of your expense:")
-        label.pack(pady=10)
+    root = tk.Tk()
+    root.geometry('400x400')
+    root.title("Expense Manager")
 
-        # Label for Title
-        title_label = tk.Label(root, text="Title:")
-        title_label.pack(padx=10, pady=5)
+    # Title Label
+    label = tk.Label(root, text="Enter the details of your expense:", font=("Helvetica", 14))
+    label.grid(row=0, column=0, columnspan=2, pady=10)
 
-        # Entry for Title
-        name = tk.Entry(root)
-        name.pack(padx=10, pady=5)
+    # Title Input
+    title_label = tk.Label(root, text="Title:")
+    title_label.grid(row=1, column=0, sticky="e", padx=10, pady=5)
 
-        # Label for Amount
-        amount_label = tk.Label(root, text="Amount (£):")
-        amount_label.pack(padx=10, pady=5)
+    name = tk.Entry(root, width=30)
+    name.grid(row=1, column=1, padx=10, pady=5)
 
-        # Entry for Amount
-        amount = tk.Entry(root)
-        amount.pack(padx=10, pady=5)
+    # Amount Input
+    amount_label = tk.Label(root, text="Amount (£):")
+    amount_label.grid(row=2, column=0, sticky="e", padx=10, pady=5)
 
-        # Label for Category
-        category_label = tk.Label(root, text="Category Options:")
-        category_label.pack(padx=10, pady=10)
-        
-        # Checkbox for Category
-        category1 = tk.Checkbutton(root, text="Bills")
-        category1.pack(padx=10, pady=10)
-        category2 = tk.Checkbutton(root, text='Groceries')
-        category2.pack(padx=10, pady=10)
-        category3 = tk.Checkbutton(root, text='Savings')
-        category3.pack(padx=10, pady=10)
-        category4 = tk.Checkbutton(root, text='Transport')
-        category4.pack(padx=10, pady=10)
-        category5 = tk.Checkbutton(root, text='Other')
-        category5.pack(padx=10, pady=10)
-        
-        # Add Another
-        another_button = tk.Button(root, text='Add Another Expense')
-        another_button.pack(padx=10, pady=10)
+    amount = tk.Entry(root, width=30)
+    amount.grid(row=2, column=1, padx=10, pady=5)
+
+    # Category Options Label
+    category_label = tk.Label(root, text="Category:")
+    category_label.grid(row=3, column=0, sticky="ne", padx=10, pady=5)
+
+    # Category Checkboxes
+    categories_frame = tk.Frame(root)  # Frame to group the checkboxes
+    categories_frame.grid(row=3, column=1, sticky="w", padx=10, pady=5)
+
+    category1 = tk.Checkbutton(categories_frame, text="Bills")
+    category1.pack(anchor="w")
+    category2 = tk.Checkbutton(categories_frame, text="Groceries")
+    category2.pack(anchor="w")
+    category3 = tk.Checkbutton(categories_frame, text="Savings")
+    category3.pack(anchor="w")
+    category4 = tk.Checkbutton(categories_frame, text="Transport")
+    category4.pack(anchor="w")
+    category5 = tk.Checkbutton(categories_frame, text="Other")
+    category5.pack(anchor="w")
+
+    # Add Another Expense Button
+    another_button = tk.Button(root, text="Add Another Expense", width=25)
+    another_button.grid(row=4, column=0, columnspan=2, pady=20)
 def income():
     while True:
         name = input('Please enter the name of this income: ')
