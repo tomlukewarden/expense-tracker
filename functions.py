@@ -1,10 +1,4 @@
-
-'''
 import csv
-
-from datetime import datetime
-'''
-
 import tkinter as tk
 # ADD EXPENSES BY TYPE
 # EDIT EXPENSE TYPES
@@ -15,6 +9,7 @@ import tkinter as tk
 # Defining Types of income and expense
 
 def expense():
+    
     root = tk.Tk()
     root.geometry('400x400')
     root.title("Expense Manager")
