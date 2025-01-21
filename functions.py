@@ -13,16 +13,6 @@ import tkinter as tk
 
 
 # Defining Types of income and expense
-def expense_type():
-    types = ['Bills', 'Groceries', 'Fun', 'Savings', 'Other']
-    print(f"Expense Types: {', '.join(types)}")
-    while True:
-        category = input("What category is this expense? ")
-        if category in types:
-            print(f"You selected: {category}")
-            return category
-        else:
-            print("Invalid category. Please try again.")
 
 def income_type():
     types = ['Work', 'Side Job', 'Other']
@@ -37,15 +27,48 @@ def income_type():
 
 def expense():
     while True:
-        name = input('Please enter the name of this expense: ')
-        amount = input('Please enter the amount of this expense: ')
-        category = expense_type()
-        print(f'Expense to Add: {name}, £{amount}, {category}')
+        root = tk.Tk()
+        root.geometry('400x300')
+        root.title("Expense Manager")
         
-        another = input("Do you want to add another expense? (yes/no): ").lower()
-        if another != 'yes':
-            break
+        label = tk.Label(root, text="Enter the details of your expense:")
+        label.pack(pady=10)
 
+        # Label for Title
+        title_label = tk.Label(root, text="Title:")
+        title_label.pack(padx=10, pady=5)
+
+        # Entry for Title
+        name = tk.Entry(root)
+        name.pack(padx=10, pady=5)
+
+        # Label for Amount
+        amount_label = tk.Label(root, text="Amount (£):")
+        amount_label.pack(padx=10, pady=5)
+
+        # Entry for Amount
+        amount = tk.Entry(root)
+        amount.pack(padx=10, pady=5)
+
+        # Label for Category
+        category_label = tk.Label(root, text="Category Options:")
+        category_label.pack(padx=10, pady=10)
+        
+        # Checkbox for Category
+        category1 = tk.Checkbutton(root, text="Bills")
+        category1.pack(padx=10, pady=10)
+        category2 = tk.Checkbutton(root, text='Groceries')
+        category2.pack(padx=10, pady=10)
+        category3 = tk.Checkbutton(root, text='Savings')
+        category3.pack(padx=10, pady=10)
+        category4 = tk.Checkbutton(root, text='Transport')
+        category4.pack(padx=10, pady=10)
+        category5 = tk.Checkbutton(root, text='Other')
+        category5.pack(padx=10, pady=10)
+        
+        # Add Another
+        another_button = tk.Button(root, text='Add Another Expense')
+        another_button.pack(padx=10, pady=10)
 def income():
     while True:
         name = input('Please enter the name of this income: ')
@@ -67,10 +90,10 @@ def view_income():
 def gui_menu():
     root = tk.Tk()
     root.title("Expense and Income Manager")
-    root.geometry("300x300") 
+    root.geometry("400x300") 
 
     # Add a label
-    title_label = tk.Label(root, text="Expense and Income Manager", font=("Helvetica", 14))
+    title_label = tk.Label(root, text="Expense Manager", font=("Helvetica", 14))
     title_label.pack(pady=20)
 
     # Add buttons 
